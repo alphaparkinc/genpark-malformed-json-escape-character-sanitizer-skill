@@ -1,2 +1,15 @@
 # genpark-malformed-json-escape-character-sanitizer-skill
-Sanitizes unescaped newlines, control characters, single-quoted keys, and trailing commas in model tool call JSON
+
+Resilient JSON payload cleaner repairing single quotes, markdown backticks, trailing commas, and unescaped characters.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    Raw["Malformed Raw Model Output: {'cmd': 'ls',}"] --> Cleaner[Regex Cleaner & Syntax Sanitizer]
+    Cleaner --> ValidJSON["Valid JSON: {"cmd": "ls"}"]
+```
+
+## Features
+- **Zero External Parsers**: 100% Python Standard Library.
+- **Markdown Stripping**: Strips triple-backtick wrappers.
